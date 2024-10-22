@@ -14,13 +14,15 @@ public class ClothingDAO {
     }
 
     /**
-     * Uses the load() method to get an item from the ClothingItems table given a partition key value and a hardcoded
-     * sort key value that is always 'active'.
+     * Uses the load() method to get an item from the ClothingItems table given a partition
+     * key value and a hardcoded sort key value that is always 'active'.
      * @param partitionKey the given partition key value used to find the correct item to load
      * @return the Clothing instance that's been loaded from the table
      */
     public Clothing getActiveClothingItem(String partitionKey) {
-        return new Clothing();
+        Clothing activeClothing = mapper.load(Clothing.class, partitionKey,
+                "active");
+        return activeClothing;
     }
 
     /**
